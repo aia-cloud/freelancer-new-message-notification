@@ -6,9 +6,31 @@ when a new red badge is detected.
 
 Quickstart
 
-1. Edit `config.json` and fill `telegram_token` and `telegram_chat_id`.
-   The default monitor box is already set to the provided Freelancer badge
-   location.
+1. Copy `config.example.json` to `config.json` and fill only the monitor settings if needed.
+   Keep `telegram_token` and `telegram_chat_id` in environment variables or a local `.env` file instead of tracking them in git.
+
+   Example `.env` file contents:
+
+   ```text
+   TELEGRAM_TOKEN=<your-token>
+   TELEGRAM_CHAT_ID=<your-chat-id>
+   ```
+
+   Example PowerShell commands:
+
+   ```powershell
+   $env:TELEGRAM_TOKEN = "<your-token>"
+   $env:TELEGRAM_CHAT_ID = "<your-chat-id>"
+   ```
+
+   Example macOS/Linux commands:
+
+   ```bash
+   export TELEGRAM_TOKEN="<your-token>"
+   export TELEGRAM_CHAT_ID="<your-chat-id>"
+   ```
+
+   The default monitor box is already set to the provided Freelancer badge location.
 
 2. Install dependencies:
 
@@ -21,6 +43,8 @@ python -m pip install -r requirements.txt
 ```powershell
 python main.py
 ```
+
+If you want, you can also store `telegram_token` and `telegram_chat_id` in `config.json` locally, but do not commit that file. `config.json` is ignored by git.
 
 Getting a Telegram bot token
 

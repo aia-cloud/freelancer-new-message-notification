@@ -1,14 +1,27 @@
+import os
 import time
 import json
 import requests
 import numpy as np
 import cv2
+from dotenv import load_dotenv
 from mss import mss
 
 
 def load_config(path="config.json"):
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+    load_dotenv()
+    cfg = {}
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as f:
+            cfg = json.load(f)
+
+    token = os.getenv("TELEGRAM_TOKEN")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID")
+    if token:
+        cfg["telegram_token"] = token
+    if chat_id:
+        cfg["telegram_chat_id"] = chat_id
+    return cfg
 
 
 def validate_config(cfg):
